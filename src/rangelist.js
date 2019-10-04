@@ -33,7 +33,7 @@ class RangeList {
   }
 
   add(range: [number, number]) {
-    if(this.checkRange(range)) {
+    if(this.validateRange(range)) {
       this.markers.push([range[0], Braces.LEFT]);
       this.markers.push([range[1], Braces.RIGHT]);
 
@@ -67,34 +67,13 @@ class RangeList {
    * @param {Array<number>} range - Array of two integers that specify beginning and end of range.
    */
   remove(range: [number, number]) {
-    if(this.checkRange(range)) {
+    if(this.validateRange(range)) {
       if(this.markers.length == 0) {
         throw new Error("Invalid Remove. Trying to remove from empty range.")
       }
       let invertedList = this.invert();
       invertedList.add(range);
       this.markers = invertedList.invert().getMarkers();
-    }
-  }
-
-  print() {
-    console.log(this.toString());
-  }
-
-  /**
-   * Prints out the list of ranges in the range list
-   */
-  toString() : string {
-    return this.markers.map(marker => marker[1] == Braces.LEFT? `[${marker[0]},` : `${marker[0]})`).join(" ");
-  }
-
-
-  checkRange(range: [number, number]): boolean {
-    if(range[0] < range[1]) {
-      return true;
-    }
-    if(range[0] > range[1]) {
-      throw new Error('Invalid Range. Left limit greater than Right limit')
     }
   }
 
@@ -114,9 +93,29 @@ class RangeList {
     }
     return new RangeList(invertedMarkers);
   }
+
+  validateRange(range: [number, number]): boolean {
+    if(range[0] < range[1]) {
+      return true;
+    }
+    if(range[0] > range[1]) {
+      throw new Error('Invalid Range. Left limit greater than Right limit')
+    }
+  }
+  
+  print() {
+    console.log(this.toString());
+  }
   
   getMarkers() : Array<[number, Brace]>{
     return this.markers;
+  }
+
+  /**
+   * Prints out the list of ranges in the range list
+   */
+  toString() : string {
+    return this.markers.map(marker => marker[1] == Braces.LEFT? `[${marker[0]},` : `${marker[0]})`).join(" ");
   }
 }
 

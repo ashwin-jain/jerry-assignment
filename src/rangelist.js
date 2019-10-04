@@ -22,7 +22,7 @@ class RangeList {
    * @param {Array<number>} range - Array of two integers that specify beginning and end of range.
    */
 
-  //Think of bracket markers on the integer timeline.
+  //Think of braces markers on the integer timeline.
   markers: Array<[number, Brace]> = [];
   
 
@@ -34,6 +34,7 @@ class RangeList {
 
   add(range: [number, number]) {
     if(this.validateRange(range)) {
+      //add new range markers on the integer line.
       this.markers.push([range[0], Braces.LEFT]);
       this.markers.push([range[1], Braces.RIGHT]);
 
@@ -71,6 +72,7 @@ class RangeList {
       if(this.markers.length == 0) {
         throw new Error("Invalid Remove. Trying to remove from empty range.")
       }
+      //Removing range is mathematically equivalent to adding range to the invert and inverting again.
       let invertedList = this.invert();
       invertedList.add(range);
       this.markers = invertedList.invert().getMarkers();

@@ -82,8 +82,11 @@ class RangeList {
   //inverts the range. eg. [5, 10) -> [-Infinity, 5) [10, Infinity)
   invert() : RangeList {
     let invertedMarkers: Array<[number, Brace]> = [];
+    //push Infinity interval in the begining or remove it if it is already there.
     this.markers[0][0] == -Infinity? this.markers.shift():invertedMarkers.push([-Infinity, Braces.LEFT]);
+    //Invert every other interval.
     this.markers.forEach(val => invertedMarkers.push([val[0], val[1]== Braces.RIGHT? Braces.LEFT : Braces.RIGHT]));
+    //Push/Remove Infinity interval from the end.
     invertedMarkers[invertedMarkers.length-1][0] == Infinity? invertedMarkers.pop(): invertedMarkers.push([Infinity, Braces.RIGHT]);
     return new RangeList(invertedMarkers);
   }

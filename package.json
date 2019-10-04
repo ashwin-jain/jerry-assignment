@@ -1,0 +1,32 @@
+{
+  "name": "rangelist",
+  "version": "1.0.0",
+  "description": "Jerry coding assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "babel src/ -d lib/",
+    "flow": "flow",
+    "dev:start": "babel-node src/index.js",
+    "prod:start": "node lib/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "some repository"
+  },
+  "keywords": [
+    "range",
+    "rangelist"
+  ],
+  "author": "Ashwin Jain",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-flow": "^7.0.0",
+    "flow-bin": "^0.109.0",
+    "jest": "^24.9.0"
+  }
+}

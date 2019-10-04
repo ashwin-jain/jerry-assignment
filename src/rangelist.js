@@ -103,6 +103,7 @@ class RangeList {
     if(range[0] > range[1]) {
       throw new Error('Invalid Range. Left limit greater than Right limit')
     }
+    return false;
   }
   
   print() {

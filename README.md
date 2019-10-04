@@ -2,15 +2,15 @@
 
 Rangelist Implementation
 
-Run Prod:
+Build source : 
+$npm run build
+
+Run build (production):
 $npm run prod:start
 
 ----------
 Run Tests : 
 $npm run test
 
-Build srouce : 
-$npm run build
-
-Run dev-src : 
+Run source (development) : 
 $npm run dev:start

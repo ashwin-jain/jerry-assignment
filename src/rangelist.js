@@ -82,17 +82,9 @@ class RangeList {
   //inverts the range. eg. [5, 10) -> [-Infinity, 5) [10, Infinity)
   invert() : RangeList {
     let invertedMarkers: Array<[number, Brace]> = [];
-    if(this.markers[0][0] == -Infinity) {
-      this.markers.shift();
-    } else {
-      invertedMarkers.push([-Infinity, Braces.LEFT]);
-    }
+    this.markers[0][0] == -Infinity? this.markers.shift():invertedMarkers.push([-Infinity, Braces.LEFT]);
     this.markers.forEach(val => invertedMarkers.push([val[0], val[1]== Braces.RIGHT? Braces.LEFT : Braces.RIGHT]));
-    if(invertedMarkers[invertedMarkers.length-1][0] == Infinity) {
-      invertedMarkers.pop();
-    } else {
-      invertedMarkers.push([Infinity, Braces.RIGHT]);
-    }
+    invertedMarkers[invertedMarkers.length-1][0] == Infinity? invertedMarkers.pop(): invertedMarkers.push([Infinity, Braces.RIGHT]);
     return new RangeList(invertedMarkers);
   }
 
@@ -106,6 +98,9 @@ class RangeList {
     return false;
   }
   
+  /**
+   * Prints out the list of ranges in the range list
+   */
   print() {
     console.log(this.toString());
   }
@@ -113,10 +108,7 @@ class RangeList {
   getMarkers() : Array<[number, Brace]>{
     return this.markers;
   }
-
-  /**
-   * Prints out the list of ranges in the range list
-   */
+  
   toString() : string {
     return this.markers.map(marker => marker[1] == Braces.LEFT? `[${marker[0]},` : `${marker[0]})`).join(" ");
   }
